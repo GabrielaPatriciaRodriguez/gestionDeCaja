@@ -1,0 +1,54 @@
+* {
+/* Selector universal, aplica a toda la pagina web*/
+font-family: "Roboto", sans-serif;
+/* fuente para toda mi pagina */
+margin: 0;
+/* margen de mi pagina */
+padding: 0;
+/* espacio entre el contenido del elemento y su borde */
+box-sizing: border-box;
+}
+
+.encabezado {
+    background-color: rgb(233, 158, 108);
+    height: 8rem;
+}
+
+.principal {  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 200px 200px 150px auto;
+    grid-template-areas:
+      "foto foto foto"
+      "foto foto foto"
+      "foto foto foto"
+      "parrafo parrafo parrafo";
+      gap: 5px;
+    overflow: hidden;
+}
+
+.foto {
+  grid-area: foto;
+  display: flex;
+  background-image:url(../assets/principal.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: scale-down;
+}
+
+.parrafo {
+  grid-area: parrafo;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(246, 244, 238);
+  width: 50%;
+  padding: 5rem;
+  background-color: rgba(92, 96, 100, 0.52);
+}
+
+.pie {
+    background-color: rgb(233, 158, 108);
+    height: 8rem;
+}
