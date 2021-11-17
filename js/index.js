@@ -55,23 +55,38 @@ class LocalComercial {
     ordenarArrayPorNumMesa(orden) {
         let arrayOrdenado = [];
         if (orden == 1) {
-            arrayOrdenado = this.mesasHabilitadas.sort((a, b) => a.id - b.id) 
+            arrayOrdenado = [...this.mesasHabilitadas.sort((a, b) => a.id - b.id)]
         } else { 
-            arrayOrdenado = this.mesasHabilitadas.sort((a, b) => b.id - a.id)
+            arrayOrdenado = [...this.mesasHabilitadas.sort((a, b) => b.id - a.id)]
         }
         return arrayOrdenado;
+    }
+
+    ordenarArrayPorMonto(orden) {
+        let arrayOrdenado2 = [];
+        if (orden == 1) {
+            arrayOrdenado2 = [...this.mesasHabilitadas.sort((a, b) => a.monto - b.monto)] 
+        } else { 
+            arrayOrdenado2 = [...this.mesasHabilitadas.sort((a, b) => b.monto - a.monto)]
+        }
+        return arrayOrdenado2;
     }
 }
 
 const morena = new LocalComercial();
+morena.setearMesasHabilitadas();
+console.log(morena.mesasHabilitadas); // muestro el arreglo
+morena.recaudacionDia(); // ejecuto el metodo recaudacionDia
+
 const arregloAsc = morena.ordenarArrayPorNumMesa(1);
+console.log(arregloAsc) // muestro el arreglo ordenado ascendentemente 
+const arregloDesc = morena.ordenarArrayPorNumMesa(2);
+console.log(arregloDesc) // muestro el arreglo ordenado descendentemente
 
-console.log(morena.setearMesasHabilitadas());
-console.log(morena.recaudacionDia());
-console.log(arregloAsc);
-
-
-
+const arregloAscMonto = morena.ordenarArrayPorMonto(1);
+console.log(arregloAscMonto) // muestro el arreglo ordenado ascendentemente 
+const arregloDescMonto = morena.ordenarArrayPorMonto(2);
+console.log(arregloDescMonto) // muestro el arreglo ordenado descendentemente
 
 
 
