@@ -36,7 +36,7 @@ class LocalComercial {
         alert("Ingrese cantidad de mesas que tiene hoy por numero de mesas y totales");
         let cantidadMesas = parseInt(prompt("Ingrese cantidad de mesas"));
         for (let i = 1; i <= cantidadMesas; i++) {
-          let id = parseInt(prompt("Ingrese identificador numero unico de la mesa"));  
+          let id = parseInt(prompt("Ingrese identificador numerico unico de la mesa"));  
           let monto = parseFloat(prompt("Ingrese monto de la mesa"));
           let mesa = new Mesa(id, monto);
           this.mesasHabilitadas.push(mesa);
@@ -50,6 +50,8 @@ class LocalComercial {
            this.totalRecaudacion = this.totalRecaudacion + this.mesasHabilitadas[i].monto;
        } 
        console.log(this.totalRecaudacion);
+
+       localStorage.setItem("recaudacion", JSON.stringify(this.mesasHabilitadas));
     }
 
     ordenarArrayPorNumMesa(orden) {
