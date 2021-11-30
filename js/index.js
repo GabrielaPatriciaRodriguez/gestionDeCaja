@@ -52,6 +52,8 @@ class LocalComercial {
        console.log(this.totalRecaudacion);
 
        localStorage.setItem("recaudacion", JSON.stringify(this.mesasHabilitadas));
+
+       document.getElementById("mostrar").innerHTML = ("recaudacion", JSON.stringify(this.mesasHabilitadas) + "Total Recaudacion: " + this.totalRecaudacion);
     }
 
     ordenarArrayPorNumMesa(orden) {
@@ -92,4 +94,18 @@ console.log(arregloDescMonto) // muestro el arreglo ordenado descendentemente
 
 
 
+
+/* Desafio 8 */
+
+let texto = "";
+
+const lista = ["getElementById()", "getElementClassName()", "getElementByTagName()"];
+
+lista.forEach(mostrarLista);
+
+document.getElementById("agregarArray").innerHTML = texto;
+
+function mostrarLista(item, index) {
+    texto += index + ": " + item + "<br>";
+}
 
