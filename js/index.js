@@ -53,7 +53,7 @@ class LocalComercial {
 
        localStorage.setItem("recaudacion", JSON.stringify(this.mesasHabilitadas));
 
-       document.getElementById("mostrar").innerHTML = ("recaudacion", JSON.stringify(this.mesasHabilitadas) + "Total Recaudacion: " + this.totalRecaudacion);
+       document.getElementById("mostrar").innerHTML = ("recaudacion", JSON.stringify(this.mesasHabilitadas) + "<br>" + "Total Recaudacion: $ " + this.totalRecaudacion);
     }
 
     ordenarArrayPorNumMesa(orden) {
@@ -93,13 +93,11 @@ const arregloDescMonto = morena.ordenarArrayPorMonto(2);
 console.log(arregloDescMonto) // muestro el arreglo ordenado descendentemente
 
 
-
-
 /* Desafio 8 */
 
 let texto = "";
 
-const lista = ["getElementById()", "getElementClassName()", "getElementByTagName()"];
+const lista = ["getElementById()", "getElementClassName()", "getElementByTagName()", ];
 
 lista.forEach(mostrarLista);
 
