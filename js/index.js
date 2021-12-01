@@ -97,7 +97,7 @@ console.log(arregloDescMonto) // muestro el arreglo ordenado descendentemente
 
 let texto = "";
 
-const lista = ["getElementById()", "getElementClassName()", "getElementByTagName()", ];
+const lista = ["getElementById()", "getElementClassName()", "getElementByTagName()"];
 
 lista.forEach(mostrarLista);
 
