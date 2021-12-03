@@ -17,7 +17,7 @@ box-sizing: border-box;
 .principal {  
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 200px 200px 150px auto;
+    grid-template-rows: auto;
     grid-template-areas:
       "foto foto foto"
       "foto foto foto"
@@ -49,6 +49,22 @@ box-sizing: border-box;
 }
 
 .pie {
+    display: flex;
     background-color: rgb(233, 158, 108);
-    height: 8rem;
+    height: auto;
+    padding: 4rem;
+}
+
+.formulario {
+  width: 30rem;
+  padding-left: 5rem;
+}
+
+.botones {
+  margin: 2rem;
+  padding-left: 6rem;
+}
+
+.mesas {
+  margin: 2rem;
 }
