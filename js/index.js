@@ -137,5 +137,7 @@ formulario.addEventListener('submit', (e) => {
 
     mensajes.push(Mensaje);
     formulario.reset();
-    console.log(mensajes);
+    document.getElementById("agregarArrayMensajes").innerHTML = JSON.stringify(mensajes);
 });
+
+
