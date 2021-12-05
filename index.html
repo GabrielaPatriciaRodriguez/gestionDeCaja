@@ -65,74 +65,39 @@
 
   <main class="principal">
     <div class="foto">
-      <div class="parrafo">
-
-        <h1>Desafio 9 - DOM - EVENTOS</h1>
-
-        <p>Document Object Model es una estructura de objetos generada por el navegador
-          que representa la pagina HTML actual. Con JavaScript ocupamos el DOM para acceder a sus
-          elementos y modificarlos de forma dinamica, tanto en su estructura, estilo y contenido.
-          En este modelo cada etiqueta del HTML es un
-          objeto que llamamos nodo -tenemos nodos padre y nodos hijos, segun la anidacion-. Todos
-          esos objetos son accesibles mediante el objeto global document, por ej document.body es
-          nodo que representa a la etiqueta body. Existen distintos metodos para acceder a las
-          etiquetas del DOM, algunos de ellos son:
-        </p>
-        <p id="agregarArray"></p>
-
-        <h2>Mesas del dia:</h2>
-
-        <p id="mostrar"></p>
-
-      </div>
-
+      <div class="parrafo"></div>
     </div>
 
-    <div>
-      <h2>Eventos</h2>
-      <p>Es la manera de controlar las acciones de los asuarios -por ej. un click, escribir
-        en un campo, doble click, enter, etc. - y definir el comportamiento
-        de la pagina o aplicacion cuando se produzcan. JavaScript ejecuta una funcion asociada,
-        que esta relacionada a escuchar ese evento: El metodo addEventListener permite definir
-        que evento escuchar sobre cada elemento del HTML.
-      </p>
+    <div class="botonCaja">
+      <button><h1>CAJA</h1></button>
     </div>
 
     <div class="mesas">
-      <h3>Mesas Interior</h3>
-      <div>
+      <h2>Mesas Interior</h2>
+
+      <div id="contenedorMesas">
+        
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal1"><img src="./assets/mesa-de-cafe.png" alt="" width="70px" height="70px"></button>
         <div class="modal" tabindex="-1" id="modal1">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">PEDIDO DE LA MESA</h5>
+                <h5 class="modal-title">MESA 1 - Interior</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <a href="#" id="cartaMenu">Ir al menu</a>
+                <p>Detalle del pedido de la Mesa</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Cargar pedido</button>
+                <button type="button" class="btn btn-primary">Pedir</button>
+                <button type="button" class="btn btn-primary">Cobrar</button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <a href="" class="mesas"><img src="./assets/mesa-de-cafe.png" alt="" width="70px" height="70px"></a>
-      <a href="" class="mesas"><img src="./assets/mesa-de-cafe.png" alt="" width="70px" height="70px"></a>
-    </div>
-
-    <div>
-      <h3>Mesas Exterior</h3>
-      <a href=""><img src="./assets/mesa-de-cafe.png" alt="" width="70px" height="70px"></a>
-      <a href=""><img src="./assets/mesa-de-cafe.png" alt="" width="70px" height="70px"></a>
-      <a href=""><img src="./assets/mesa-de-cafe.png" alt="" width="70px" height="70px"></a>
-    </div>
-
-    <p id="agregarArrayMensajes"></p>
 
   </main>
 
