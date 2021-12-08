@@ -60,11 +60,10 @@
     </nav>
   </header>
 
-  <main class="principal">
-    <div class="foto">
-      <div class="parrafo"></div>
-    </div>
+  <main>
+    <img src="./assets/principal.jpg" class="img-fluid imagen" alt="imagen principal">
 
+    <!-- Boton Caja Principal -->
     <div class="botonCaja">
       <div id="contenedor-Caja"> 
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal1">
@@ -120,9 +119,12 @@
       </div>
     </div>
 
+    <!-- Boton Mesas del comercio. VER como cargar mesas en forma dinamica desde js -->
+
     <div class="mesas">
       <h2>Mesas Interior</h2>
 
+      <!-- VER xq este id todavia no esta siendo ocupado -->
       <div id="contenedor-Mesas">
         
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal2"><img src="./assets/mesa-de-cafe.png" alt="mesa" width="70px" height="70px"></button>
@@ -165,7 +167,11 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Pedir</button>
+                <button type="button" class="btn btn-primary">Agregar a la Mesa</button>
+                <button type="button" class="btn btn-primary">Pedir Mas</button>
+
+                <!-- VER para enlazar con la pagina de afip para facturar en forma electronica -->
+                <!-- Y que ese monto vaya a la caja principal -->
                 <button type="button" class="btn btn-primary">Cobrar</button>
               </div>
             </div>
@@ -175,54 +181,58 @@
 
       <hr>
 
-      
+      <!-- Carta Menu del Comercio: Los productos los puedo cargar yo o el cliente a traves del
+      formulario. En cualquiera de los 2 supuestos se hace desde js -->
 
-      <div>
+      <div class="cartaMenu">
         <h2>CARTA MENU</h2>
       </div>
 
-      <div id="contenedor-Menu">
-        <!-- <div class="card" style="width: 18rem;">
-          <img src="#" alt="fotoProducto">
-          <div class="card-body">
-            <h5 class="card-title">Hamburguesa Simple</h5>
-            <p class="card-text">Precio</p>
-            <p class="card-text">Ingredientes</p>
-            <p class="card-text">Pedido Especial del cliente</p>
-            <p class="card-text">Cantidad</p>
-            <p class="card-text">SUBTOTAL</p>
-            <a href="#" class="btn btn-primary">Agregar</a>
-          </div>
-        </div> -->
-      
+      <!-- Productos que cargo yo -->
+      <div id="contenedor-Menu" class="foto"></div>
 
-    
-    </div>
+      <!-- Productos que carga el cliente completando el formulario -->
+      <div id="divProductos"></div>
 
   </main>
 
+  
   <footer>
+
+    <!-- Formulario para que el cliente cargue productos a la carta -->
     <div class="pie">
-      <form class="formulario" id="formulario">  
       
-      <div class="ms-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" placeholder="escribi tu nombre">
-      </div>
-      <div class="ms-3">
-        <label for="apellido" class="form-label">Apellido</label>
-        <input type="text" class="form-control" id="apellido" placeholder="escribi tu apellido">
-      </div>
-      <div class="ms-3">
-        <label for="mensaje" class="form-label">Mensaje</label>
-        <textarea class="form-control" id="mensaje" rows="3"></textarea>
-      </div>
-      <div class="botones">
-        <button class="btn btn-primary" type="submit">Enviar</button>
-        <button class="btn btn-primary" type="reset">Limpiar</button>
-      </div>
-     
-    </form>
+
+      <form class="formulario" id="formProductos"> 
+        <p>Si ud. quiere agregar productos a la carta complete el siguiente formulario:</p> 
+      
+        <div class="ms-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" placeholder="escribi nombre del producto" name="nombre">
+        </div>
+        <div class="ms-3">
+          <label for="descrpcion" class="form-label">descripcion</label>
+          <input type="text" class="form-control" id="descripcion" placeholder="escribi que contiene" name="descripcion">
+        </div>
+        <div class="ms-3">
+          <label for="precio" class="form-label">Precio</label>
+          <input type="number" class="form-control" id="precio" placeholder="escribi precio del producto" name="precio">
+        </div>
+        <div class="ms-3">
+          <label for="stock" class="form-label">Stock</label>
+          <input type="number" class="form-control" id="stock" placeholder="escribi stock del producto" name="stock">
+        </div>
+        <div class="mb-3">
+          <label for="imagen" class="form-label">elegi imagen</label>
+          <input class="form-control" type="file" id="imagen" name="imagen">
+        </div>
+        
+        <div class="botones">
+          <button class="btn btn-primary" type="submit">Cargar</button>
+
+          <!-- Boton que me permite mostrar productos cargados en forma dinamica con js -->
+          <button class="btn btn-dark" type="submit" id="botonProductos">Mostrar Productos</button>
+        </div>
 
     </div>
 

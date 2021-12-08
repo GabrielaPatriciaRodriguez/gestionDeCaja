@@ -14,15 +14,20 @@ box-sizing: border-box;
     height: 8rem;
 }
 
-.principal {  
+.imagen {
+  height: 16rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.cartaMenu {  
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas:
       "foto foto foto"
       "foto foto foto"
-      "foto foto foto"
-      "parrafo parrafo parrafo";
+      "foto foto foto";
       gap: 5px;
     overflow: hidden;
 }
@@ -30,23 +35,9 @@ box-sizing: border-box;
 .foto {
   grid-area: foto;
   display: flex;
-  background-image:url(../assets/principal.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  object-fit: scale-down;
+  padding: 3rem;
 }
 
-.parrafo {
-  grid-area: parrafo;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: rgb(246, 244, 238);
-  width: 50%;
-  padding: 5rem;
-  /* background-color: rgba(92, 96, 100, 0.52); */
-}
 
 .botonCaja {
   display: flex;
