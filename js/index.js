@@ -112,6 +112,10 @@ let divProductos = document.getElementById("divProductos");
 //Formulario donde el cliente que ocupa mi aplicacion va a cargar las caracteristicas de los productos
 let formProductos = document.getElementById("formProductos");
 
+//Para que aparezca un  mensaje pidiendo al usuario que no presione el boton nuevamente
+//porque los productos ya estan cargados
+let mensajeAmigable = document.getElementById("mensajeAmigable");
+
 formProductos.addEventListener('submit', (e) => {
   e.preventDefault();
   let datForm = new FormData(e.target);
@@ -122,19 +126,24 @@ formProductos.addEventListener('submit', (e) => {
 })
 
 botonProductos.addEventListener('click', () => {
-  let productosEnStorage = JSON.parse(localStorage.getItem('keyProductos'))
-  productosEnStorage.forEach((productosEnArray, indice) => {
-    divProductos.innerHTML += `<div class="card"; id= "producto ${indice}"; style="width: 18rem; margin: 3rem;">
-    
-    <div class="card-body">
-      <h5 class="card-title">${productosEnArray.nombre}</h5>
-      <p class="card-text">Precio: $${productosEnArray.precio}</p>
-      <p class="card-text">Descripcion: ${productosEnArray.descripcion}</p>
-      <p class="card-text">Pedido Especial del cliente</p>
-      <p class="card-text">Stock: ${productosEnArray.stock}</p>
-      <a id= "boton${indice}" href="#" class="btn btn-primary">Agregar</a>
-    </div>
-
-</div>`
-  })
+  let productosEnStorage = JSON.parse(localStorage.getItem('keyProductos'));
+  if (divProductos.children.length == 0) {
+    productosEnStorage.forEach((productosEnArray, indice) => {
+      divProductos.innerHTML += `<div class="card"; id= "producto ${indice}"; style="width: 18rem; margin: 3rem;">
+      
+      <div class="card-body">
+        <h5 class="card-title">${productosEnArray.nombre}</h5>
+        <p class="card-text">Precio: $${productosEnArray.precio}</p>
+        <p class="card-text">Descripcion: ${productosEnArray.descripcion}</p>
+        <p class="card-text">Pedido Especial del cliente</p>
+        <p class="card-text">Stock: ${productosEnArray.stock}</p>
+        <a id= "boton${indice}" href="#" class="btn btn-primary">Agregar</a>
+      </div>
+  
+  </div>`
+    })
+  } else {
+    mensajeAmigable.innerHTML = "Por favor no haga click en el boton porque los productos ya estan cargados"
+  }
+  
 })
