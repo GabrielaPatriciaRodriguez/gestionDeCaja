@@ -30,12 +30,21 @@ box-sizing: border-box;
       "foto foto foto";
       gap: 5px;
     overflow: hidden;
+    background-color: rgb(233, 158, 108);
 }
 
 .foto {
   grid-area: foto;
   display: flex;
   padding: 3rem;
+  background-color: rgb(233, 158, 108);
+}
+
+.tituloCartaMenu {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -45,9 +54,35 @@ box-sizing: border-box;
   justify-content: center;
 }
 
-.mesas {
+.mesas2 {
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "mesa mesa mesa mesa"
+      "mesa mesa mesa mesa"
+      "mesa mesa mesa mesa";
+      gap: 5px;
+    overflow: hidden;
   margin: 2rem;
+  padding: 2rem;
 }
+
+.mesa {
+  grid-area: mesa;
+  display: flex;
+  padding: 3rem;
+}
+
+.botonMesas {
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.productosEnMesa {
+  padding-left: 5rem;
+}
+
 
 .pie {
     display: flex;

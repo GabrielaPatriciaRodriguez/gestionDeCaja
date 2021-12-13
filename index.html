@@ -119,63 +119,23 @@
       </div>
     </div>
 
-    <!-- Boton Mesas del comercio. VER como cargar mesas en forma dinamica desde js -->
+    <!-- Boton Mesas del comercio. Estan cargadas en forma dinamica desde js -->
 
     <div class="mesas">
       <h2>Mesas Interior</h2>
 
-      <!-- VER xq este id todavia no esta siendo ocupado -->
-      <div id="contenedor-Mesas">
-        
-        <button type="button" data-bs-toggle="modal" data-bs-target="#modal2"><img src="./assets/mesa-de-cafe.png" alt="mesa" width="70px" height="70px"></button>
-        <div class="modal" tabindex="-1" id="modal2">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">MESA 1 - Interior</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p>Detalle del pedido de la Mesa</p>
-              </div>
+      <div class="mesas2" id="contenedor-Mesas"></div>
 
-              <div>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Producto</th>
-                      <th scope="col">Cantidad</th>
-                      <th scope="col">Precio Unitario</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>ej Hamburguesa</td>
-                      <td>ej 2</td>
-                      <td>ej 250</td>
-                    </tr>
-                    
-                    <tr>
-                      <th scope="row">Total</th>
-                      <td colspan="2"></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Agregar a la Mesa</button>
-                <button type="button" class="btn btn-primary">Pedir Mas</button>
+      </div>
 
-                <!-- VER para enlazar con la pagina de afip para facturar en forma electronica -->
-                <!-- Y que ese monto vaya a la caja principal -->
-                <button type="button" class="btn btn-primary">Cobrar</button>
-              </div>
+      <!-- Imprime en el HTML. Me falta pensar como hacer para que imprima a una mesa en particular -->
+      <div class="productosEnMesa">
+        <div>
+            <h3>Productos cargados a la Mesa</h3>
+            <div id="mesa-Contenedor">
+               
             </div>
-          </div>
+            <p>Precio total: $<span></span></p>
         </div>
       </div>
 
@@ -185,7 +145,7 @@
       formulario. En cualquiera de los 2 supuestos se hace desde js -->
 
       <div class="cartaMenu">
-        <h2>CARTA MENU</h2>
+        <h2 class="tituloCartaMenu">CARTA MENU</h2>
       </div>
 
       <!-- Productos que cargo yo -->
@@ -196,6 +156,8 @@
 
   </main>
 
+  
+<hr>
   
   <footer>
 
@@ -245,9 +207,10 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
   </script>
 
+  <script src="./js/mesasCreadas.js"></script>
 
   <script src="./js/menu.js"></script>
-  <script src="./js/modal.js"></script>
+  
   <script src="./js/index.js"></script>
 </body>
 

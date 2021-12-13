@@ -1,7 +1,41 @@
 /* Proyecto Avanzado: Voy a comenzar con la carga de los productos de la carta*/
 
+// SUPUESTO EN QUE SEA YO LA QUE CARGUE LAS MESAS
 
-//CASO EN QUE SEA YO LA QUE CARGUE TODOS LOS PRODUCTOS QUE EL CLIENTE VA A TENER EN LA PAGINA/ APLICACION
+const contenedorMesas = document.getElementById("contenedor-Mesas");
+
+const contenedorMesa = document.getElementById("mesa-Contenedor");
+
+mostrarMesas (misMesas);
+
+function mostrarMesas(array) {
+  
+  array.forEach(misMesas => {
+    let div = document.createElement("div");
+
+    //ME MOSTRABA EL MISMO MODAL EN TODAS LAS MESAS. Por eso le saque el modal y primero
+    //voy a intentar cargar a una mesa y luego analizo como cargar a las mesas que vaya 
+    //eligiendo
+
+    div.innerHTML += `<button id="boton${misMesas.id}" 
+    type="button" 
+    class="botonMesas"><img src="./assets/mesa-de-cafe.png" alt="mesa" width="70px" 
+    height="70px"></button>
+    </div>`
+
+    contenedorMesas.appendChild(div);
+
+    let boton = document.getElementById(`boton${misMesas.id}`)
+
+    boton.addEventListener(`click`, () => {
+      console.log(`boton${misMesas.id}`)
+    })
+  })
+}
+
+
+//CASO EN QUE SEA YO LA QUE CARGUE TODOS LOS PRODUCTOS QUE EL CLIENTE de mi aplicacion
+// VA A TENER EN LA PAGINA/ APLICACION
 // En este supuesto hice un array de productos/platos/menu y los cargue en forma manual
 // Luego muestro en la pagina, en el HTML, en forma de cards
 
@@ -15,15 +49,14 @@ function mostrarMenu(array) {
     let div = document.createElement("div");
 
     div.innerHTML += `<div class="card" style="width: 18rem; margin: 3rem;">
-        <img src=${menu.img} style="width: 50px;height:50px;">
+        <img src=${menu.img} style="width: 100px; height:100px;">
         <div class="card-body">
           <h5 class="card-title">${menu.nombre}</h5>
           <p class="card-text">Precio: $${menu.precio}</p>
           <p class="card-text">Descripcion: ${menu.desc}</p>
           <p class="card-text">Pedido Especial del cliente</p>
           <p class="card-text">stock: ${menu.stock}</p>
-          <p class="card-text">SUBTOTAL $ </p>
-          <a id= "boton${menu.id}" href="#" class="btn btn-primary">Agregar</a>
+          <a id= "botonAgregar${menu.id}" href="#" class="btn btn-primary">Agregar</a>
         </div>
       </div>
     </div>
@@ -31,7 +64,23 @@ function mostrarMenu(array) {
   </div>`
 
     contenedorMenu.appendChild(div);
+
+    let botonAgregar = document.getElementById(`botonAgregar${menu.id}`)
+
+    botonAgregar.addEventListener(`click`, () => {
+      agregarALaMesa(menu.id)
+    })
   });
+}
+
+function agregarALaMesa(id) {
+  let menuAgregar = stockMenu.find(elemento => elemento.id === id);
+  // console.log(menuAgregar);
+  let div = document.createElement("div");
+  div.innerHTML = `<p>${menuAgregar.nombre}</p>
+                    <p>${menuAgregar.precio}</p>
+                    <p>${menuAgregar.id}</p>`
+  contenedorMesa.appendChild(div);
 }
 
 //SUPUESTO EN QUE SEA EL CLIENTE EL QUE CARGUE LOS PRODUCTOS
@@ -82,9 +131,8 @@ botonProductos.addEventListener('click', () => {
       <p class="card-text">Precio: $${productosEnArray.precio}</p>
       <p class="card-text">Descripcion: ${productosEnArray.descripcion}</p>
       <p class="card-text">Pedido Especial del cliente</p>
-      <p class="card-text">Cantidad: ${productosEnArray.stock}</p>
-      <p class="card-text">SUBTOTAL $ </p>
-      <a id= "boton${indice}" href="#" class="btn btn-danger">Eliminar</a>
+      <p class="card-text">Stock: ${productosEnArray.stock}</p>
+      <a id= "boton${indice}" href="#" class="btn btn-primary">Agregar</a>
     </div>
 
 </div>`
