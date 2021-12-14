@@ -14,7 +14,7 @@ function mostrarMesas(array) {
     let div = document.createElement("div");
 
     //ME MOSTRABA EL MISMO MODAL EN TODAS LAS MESAS. Por eso le saque el modal y primero
-    //voy a intentar cargar a una mesa y luego analizo como cargar a las mesas que vaya 
+    //voy a intentar cargar al HTML, y luego analizo como cargar a las mesas que vaya 
     //eligiendo
 
     div.innerHTML += `<button id="boton${misMesas.id}" 
@@ -73,13 +73,15 @@ function mostrarMenu(array) {
   });
 }
 
+//La idea es despues agregar a la mesa que elija. Por ahora agrega al HTML
+
 function agregarALaMesa(id) {
   let menuAgregar = stockMenu.find(elemento => elemento.id === id);
-  // console.log(menuAgregar);
   let div = document.createElement("div");
-  div.innerHTML = `<p>${menuAgregar.nombre}</p>
-                    <p>${menuAgregar.precio}</p>
-                    <p>${menuAgregar.id}</p>`
+  div.style.cssText = "display:flex;width:50%; justify-content: space-between;"
+  div.innerHTML = `<p>id: ${menuAgregar.id}</p>
+                    <p>${menuAgregar.nombre}</p>
+                    <p>${menuAgregar.precio}</p>`
   contenedorMesa.appendChild(div);
 }
 
@@ -117,6 +119,7 @@ let formProductos = document.getElementById("formProductos");
 let mensajeAmigable = document.getElementById("mensajeAmigable");
 
 formProductos.addEventListener('submit', (e) => {
+  console.log("ghhgsgsghss")
   e.preventDefault();
   let datForm = new FormData(e.target);
   let nuevoProd = new producto(datForm.get("nombre"), datForm.get("descripcion"), datForm.get("precio"), datForm.get("stock"), datForm.get("imagen"));
@@ -130,7 +133,6 @@ botonProductos.addEventListener('click', () => {
   if (divProductos.children.length == 0) {
     productosEnStorage.forEach((productosEnArray, indice) => {
       divProductos.innerHTML += `<div class="card"; id= "producto ${indice}"; style="width: 18rem; margin: 3rem;">
-      
       <div class="card-body">
         <h5 class="card-title">${productosEnArray.nombre}</h5>
         <p class="card-text">Precio: $${productosEnArray.precio}</p>
