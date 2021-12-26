@@ -12,6 +12,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+  <!-- Fontawesone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
   <link rel="stylesheet" href="./css/style.css">
 
 </head>
@@ -19,41 +22,17 @@
 <body>
 
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid encabezado">
-        <a class="navbar-brand" href="#"><strong>NOMBRE DEL COMERCIO</strong></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-          aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Gestion de Caja</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Link
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Link</a>
-            </li>
-          </ul>
-
-        </div>
+    <nav class="nav navbar navbar-expand-lg navbar-light bg-light">
+      <div class="encabezado"> 
+        <ul>
+          <li><button id="botonDark">Dark Mode</button></li>
+          <li><button id="botonLight">Light Mode</button></li>
+        </ul>
+      </div>
+      <div class="encabezado container-fluid d-flex justify-content-center">
+        <!-- Nombre del Comercio -->
+        <a class="navbar-brand" href="#"><strong>La Morenita</strong></a>
+        <h1>Gestion de Caja</h1>
       </div>
     </nav>
   </header>
@@ -61,53 +40,41 @@
   <main>
     <img src="./assets/principal.jpg" class="img-fluid imagen" alt="imagen principal">
 
-    <!-- Boton Caja Principal -->
+    <!-- Boton Caja -->
     <div class="botonCaja">
-      <div id="contenedor-Caja">
-        <button type="button" data-bs-toggle="modal" data-bs-target="#modal1">
-          <h1>CAJA PRINCIPAL</h1>
+      <div>
+        <button class="caja" type="button" data-bs-toggle="modal" data-bs-target="#modal1">
+          <h2>CAJA</h2>
           <img src="./assets/caja-registradora.png" alt="" width="70px" height="70px">
         </button>
         <div class="modal" tabindex="-1" id="modal1">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">CAJA PRINCIPAL</h5>
+                <h5 class="modal-title">CAJA</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p>MESAS</p>
               </div>
 
               <div>
-                <table class="table">
+                <table class="table" id="table">
                   <thead>
                     <tr>
-                      <th scope="col">Nº de Mesa</th>
-                      <th scope="col">Condicion</th>
+                      <th scope="col">ID</th>
+                      <th scope="col">Producto</th>
                       <th scope="col">Subtotal</th>
-                      <th scope="col">Total</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Eliminar</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Ej 1</th>
-                      <td>ej Ocupada</td>
-                      <td>ej $ 500</td>
-                      <td>ej $ .....</td>
-                    </tr>
+                  <tbody id="contenedorCaja">
 
-                    <tr>
-                      <th scope="row">Recaudacion Total</th>
-                      <td colspan="2"></td>
-                      <td></td>
-                    </tr>
                   </tbody>
                 </table>
+                <div><p>TOTAL: $ <span id="mostrarTotal"></span></p></div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Cobrar</button>
+                <button type="button" class="btn btn-primary" id="cobrar">Cobrar</button>
               </div>
             </div>
           </div>
@@ -117,101 +84,45 @@
     </div>
     </div>
 
-    <!-- Boton Mesas del comercio. Estan cargadas en forma dinamica desde js -->
-
-    <div class="mesas">
-      <h2>Mesas Interior</h2>
-
-      <div class="mesas2" id="contenedor-Mesas"></div>
-
-    </div>
-
-    <!-- Imprime en el HTML. Me falta pensar como hacer para que imprima a una mesa en particular -->
-    <div class="productosEnMesa">
-      <div>
-        <h3>Productos cargados a la Mesa</h3>
-        <div id="mesa-Contenedor">
-
-        </div>
-        <div style="display:flex;width:50%; justify-content: space-between;">
-          <p>Precio total:</p><p>$<span></span></p>
-        </div>
-      </div>
-    </div>
-
+    
     <hr>
 
-    <!-- Carta Menu del Comercio: Los productos los puedo cargar yo o el cliente a traves del
-      formulario. En cualquiera de los 2 supuestos se hace desde js -->
+    <!-- Carta Menu del Comercio: Fueron cargados en forma dinamica desde js -->
 
-    <div class="cartaMenu">
+    <div>
       <h2 class="tituloCartaMenu">CARTA MENU</h2>
     </div>
 
-    <!-- Productos que cargo yo -->
-    <div id="contenedor-Menu" class="foto"></div>
+    <div id="contenedorMenu"></div>
 
-    <!-- Productos que carga el cliente completando el formulario -->
-    <div id="divProductos" class="row"></div>
 
   </main>
 
   <hr>
 
-  <footer>
+  <footer class="pie">
 
-    <!-- Formulario para que el cliente cargue productos a la carta -->
-    <div class="pie">
-
-
-      <form class="formulario" id="formProductos">
-        <p>Si ud. quiere agregar productos a la carta complete el siguiente formulario:</p>
-
-        <div class="ms-3">
-          <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="nombre" placeholder="escribi nombre del producto" name="nombre">
-        </div>
-        <div class="ms-3">
-          <label for="descrpcion" class="form-label">descripcion</label>
-          <input type="text" class="form-control" id="descripcion" placeholder="escribi que contiene"
-            name="descripcion">
-        </div>
-        <div class="ms-3">
-          <label for="precio" class="form-label">Precio</label>
-          <input type="number" class="form-control" id="precio" placeholder="escribi precio del producto" name="precio">
-        </div>
-        <div class="ms-3">
-          <label for="stock" class="form-label">Stock</label>
-          <input type="number" class="form-control" id="stock" placeholder="escribi stock del producto" name="stock">
-        </div>
-        <div class="mb-3">
-          <label for="imagen" class="form-label">elegi imagen</label>
-          <input class="form-control" type="file" id="imagen" name="imagen">
-        </div>
-
-        <div class="botones">
-          <button class="btn btn-primary" type="submit">Cargar</button>
-
-          <!-- Boton que me permite mostrar productos cargados en forma dinamica con js -->
-          <button class="btn btn-dark" type="button" id="botonProductos">Mostrar Productos</button>
-
-          <!-- Mensaje para que el usuario de la aplicacion no presione el boton una vez que ya estan cargados los productos -->
-          <p id="mensajeAmigable"></p>
-
-        </div>
-      </form>
-    </div>
-
+    <div>
+      <ul>
+          <!-- Lista de iconos: facebook, Instagram, Twiter -->
+          <li><a href="#"><i class="fab fa-facebook pie__iconos--color"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram pie__iconos--color"></i></a></li>
+          <li><a href="#"><i class="fab fa-whatsapp pie__iconos--color"></i></i></a></li>
+      </ul>
+  </div>
+</div>
+<div>
+  <p>Copyright <i class="far fa-copyright"></i> -Todos los derechos reservados-</p>
+</div>
   </footer>
 
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
   </script>
-
-  <script src="./js/mesasCreadas.js"></script>
-
-  <script src="./js/menu.js"></script>
 
   <script src="./js/index.js"></script>
 </body>

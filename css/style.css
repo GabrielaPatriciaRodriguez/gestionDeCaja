@@ -9,9 +9,19 @@ padding: 0;
 box-sizing: border-box;
 }
 
+
+body {
+  background-color: gainsboro;
+  transition: background-color 800ms ease;
+}
+
 .encabezado {
     background-color: rgb(233, 158, 108);
     height: 8rem;
+}
+
+.nav ul {
+list-style: none;
 }
 
 .imagen {
@@ -20,31 +30,27 @@ box-sizing: border-box;
   object-fit: cover;
 }
 
-.cartaMenu {  
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "foto foto foto"
-      "foto foto foto"
-      "foto foto foto";
-      gap: 5px;
-    overflow: hidden;
-    background-color: rgb(233, 158, 108);
-}
-
-.foto {
-  grid-area: foto;
-  display: flex;
-  padding: 3rem;
-  background-color: rgb(233, 158, 108);
-}
 
 .tituloCartaMenu {
   padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#contenedorMenu {
+  max-width: 1200px;
+  margin: 60px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.producto {
+  max-width: 30%;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 2px 6px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -54,35 +60,10 @@ box-sizing: border-box;
   justify-content: center;
 }
 
-.mesas2 {
-  display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "mesa mesa mesa mesa"
-      "mesa mesa mesa mesa"
-      "mesa mesa mesa mesa";
-      gap: 5px;
-    overflow: hidden;
-  margin: 2rem;
-  padding: 2rem;
+.caja {
+  background-color:rgb(233, 158, 108);
+  width: 20rem;
 }
-
-.mesa {
-  grid-area: mesa;
-  display: flex;
-  padding: 3rem;
-}
-
-.botonMesas {
-  margin: 2rem;
-  padding: 1rem;
-}
-
-.productosEnMesa {
-  padding-left: 5rem;
-}
-
 
 .pie {
     display: flex;
@@ -100,3 +81,4 @@ box-sizing: border-box;
   margin: 2rem;
   padding-left: 6rem;
 }
+

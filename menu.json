@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "nombre": "Hamburguesa Simple",
+    "tipo": "Hamburguesa",
+    "desc": "Pan, carne, queso",
+    "precio": 250,
+    "img": "./assets/hamburguesa.jpg",
+    "stock": 1
+  },
+  {
+    "id": 2,
+    "nombre": "Hamburguesa Completa",
+    "tipo": "Hamburguesa",
+    "desc": "Pan, carne, queso, jamon, lechuga, tomate",
+    "precio": 300,
+    "img": "./assets/hamburguesaEspecial.jpg",
+    "stock": 1
+  },
+  {
+    "id": 3,
+    "nombre": "Pizza Napolitana",
+    "tipo": "Pizza",
+    "desc": "Pizza, tomate, muzzarella",
+    "precio": 650,
+    "img": "./assets/pizzaNapo.jpg",
+    "stock": 1
+  },
+  {
+    "id": 4,
+    "nombre": "Pizza Anchoas",
+    "tipo": "Pizza",
+    "desc": "Pizza, anchoas, muzzarella",
+    "precio": 850,
+    "img": "./assets/pizzaAnchoas.jpg",
+    "stock": 1
+  },
+  {
+    "id": 5,
+    "nombre": "Pizza Morrones",
+    "tipo": "Pizza",
+    "desc": "Pizza, Morrones, Muzzarella",
+    "precio": 900,
+    "img": "./assets/pizzaMorrones.jpg",
+    "stock": 1
+  }, 
+  {
+    "id": 6,
+    "nombre": "Daikiris",
+    "tipo": "Bebida",
+    "desc": "frutilla, durazno, anana",
+    "precio": 550,
+    "img": "./assets/daikiri.jpg",
+    "stock": 1
+  },
+  {
+    "id": 7,
+    "nombre": "Tequila",
+    "tipo": "Bebida",
+    "desc": "Tequila, limon, sal",
+    "precio": 900,
+    "img": "./assets/tequila.jpg",
+    "stock": 1
+  },
+  {
+    "id": 8,
+    "nombre": "Cerveza Corona",
+    "tipo": "Bebida",
+    "desc": "Cerveza",
+    "precio": 750,
+    "img": "./assets/coronas.jpg",
+    "stock": 1
+  },
+  {
+    "id": 9,
+    "nombre": "Cerveza Corona x 6",
+    "tipo": "Bebida",
+    "desc": "Cerveza",
+    "precio": 5000,
+    "img": "./assets/coronas.jpg",
+    "stock": 1
+  }
+]

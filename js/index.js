@@ -1,147 +1,175 @@
-/* Proyecto Avanzado: Voy a comenzar con la carga de los productos de la carta*/
+//Logica del negocio:
 
-// SUPUESTO EN QUE SEA YO LA QUE CARGUE LAS MESAS
+//Funciones:
 
-const contenedorMesas = document.getElementById("contenedor-Mesas");
+//Respecto al Menu necesito obtener el producto- Lo hago a traves de su id, con el metodo find
+//que me retorna el primer elemento que coincida con el id que le paso
 
-const contenedorMesa = document.getElementById("mesa-Contenedor");
-
-mostrarMesas (misMesas);
-
-function mostrarMesas(array) {
-  
-  array.forEach(misMesas => {
-    let div = document.createElement("div");
-
-    //ME MOSTRABA EL MISMO MODAL EN TODAS LAS MESAS. Por eso le saque el modal y primero
-    //voy a intentar cargar al HTML, y luego analizo como cargar a las mesas que vaya 
-    //eligiendo
-
-    div.innerHTML += `<button id="boton${misMesas.id}" 
-    type="button" 
-    class="botonMesas"><img src="./assets/mesa-de-cafe.png" alt="mesa" width="70px" 
-    height="70px"></button>
-    </div>`
-
-    contenedorMesas.appendChild(div);
-
-    let boton = document.getElementById(`boton${misMesas.id}`)
-
-    boton.addEventListener(`click`, () => {
-      console.log(`boton${misMesas.id}`)
-    })
-  })
+function obtenerProducto(idProducto) {
+  let producto = stockMenu.find(producto => producto.id == idProducto)
+  return producto
 }
 
+//La Caja es un objeto que tendra propiedades: Total y un array de productos:
 
-//CASO EN QUE SEA YO LA QUE CARGUE TODOS LOS PRODUCTOS QUE EL CLIENTE de mi aplicacion
-// VA A TENER EN LA PAGINA/ APLICACION
-// En este supuesto hice un array de productos/platos/menu y los cargue en forma manual
+let caja = {
+  total: 0,
+  productos: []
+}
+
+//Funcion para agregar a la caja productos:
+
+function agregarALaCaja(producto) {
+  //Si existe en productos, suma 1 a la cantidad
+  //Si no existe en productos lo agrega
+  let productoEnCaja = caja.productos.find(productoEnCaja => productoEnCaja.id == producto.id)
+  if(productoEnCaja) {
+    productoEnCaja.cantidad += 1
+  }
+  else{
+    caja.productos.push({...producto, cantidad: 1})
+  }
+  actualizarTotal()
+  renderizarCaja()
+  guardarEnLocalStorage()
+}
+
+//Actualizar el total de la caja:
+
+function actualizarTotal() {
+  caja.total = 0
+  caja.productos.forEach(producto => caja.total += (producto.precio * producto.cantidad))
+}
+
+//Para dejar la caja en cero:
+
+function resetearCaja() {
+  caja = {
+    total: 0,
+    productos: []
+  }
+}
+
+let botonCobrar = document.getElementById("cobrar");
+
+botonCobrar.addEventListener("click", () => {
+  alert(`Su compra da un total de $ ${caja.total}`);
+  resetearCaja();
+  guardarEnLocalStorage();
+  renderizarCaja();
+})
+
+  function eliminarItem(id) {
+    console.log("console id en eliminar item", id)
+    const index = caja.productos.findIndex(elemento => elemento.id === id);
+    console.log("console index", index)
+    if(caja.productos[index].cantidad > 1){
+      caja.productos[index].cantidad -= 1 
+      
+    }else{
+      caja.productos = caja.productos.filter(elemento => elemento.id !== id);
+    }
+    actualizarTotal()
+  }
+
+//CARGUE TODOS LOS PRODUCTOS en un archivo json (menu.json)
 // Luego muestro en la pagina, en el HTML, en forma de cards
 
-const contenedorMenu = document.getElementById("contenedor-Menu");
+const contenedorMenu = document.getElementById("contenedorMenu");
 
-mostrarMenu(stockMenu);
+let stockMenu = [];
 
-function mostrarMenu(array) {
-  // console.log(array);
-  array.forEach(menu => {
-    let div = document.createElement("div");
-
+function crearCardProducto(menu) {
+  let div = document.createElement("div");
+    div.classList.add("producto");
     div.innerHTML += `<div class="card" style="width: 18rem; margin: 3rem;">
-        <img src=${menu.img} style="width: 100px; height:100px;">
+        <img src=${menu.img} style="width: 18rem; height:200px;">
         <div class="card-body">
           <h5 class="card-title">${menu.nombre}</h5>
           <p class="card-text">Precio: $${menu.precio}</p>
           <p class="card-text">Descripcion: ${menu.desc}</p>
           <p class="card-text">Pedido Especial del cliente</p>
           <p class="card-text">stock: ${menu.stock}</p>
-          <a id= "botonAgregar${menu.id}" href="#" class="btn btn-primary">Agregar</a>
+          <a id="item-${menu.id}" href="#" class="btn btn-primary">Agregar</a>
         </div>
-      </div>
-    </div>
+      </div>`
+      return div;
+}
 
-  </div>`
+//Funcion para mostrar la carta (productos) en el html
 
+function renderizarMenu() {
+  stockMenu.forEach(menu => {
+    const div = crearCardProducto(menu);
     contenedorMenu.appendChild(div);
-
-    let botonAgregar = document.getElementById(`botonAgregar${menu.id}`)
-
-    botonAgregar.addEventListener(`click`, () => {
-      agregarALaMesa(menu.id)
-    })
   });
 }
 
-//La idea es despues agregar a la mesa que elija. Por ahora agrega al HTML
+//Funcion que me permite mostrar la caja con los productos que voy cargando:
 
-function agregarALaMesa(id) {
-  let menuAgregar = stockMenu.find(elemento => elemento.id === id);
-  let div = document.createElement("div");
-  div.style.cssText = "display:flex;width:50%; justify-content: space-between;"
-  div.innerHTML = `<p>id: ${menuAgregar.id}</p>
-                    <p>${menuAgregar.nombre}</p>
-                    <p>${menuAgregar.precio}</p>`
-  contenedorMesa.appendChild(div);
-}
-
-//SUPUESTO EN QUE SEA EL CLIENTE EL QUE CARGUE LOS PRODUCTOS
-// Es una buena opcion para no me llame cada vez que quiera agregar productos a la carta
-// Cree una clase producto.
-
-class producto {
-  constructor(nombre, descripcion, precio, stock, imagen) {
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.precio = precio;
-    this.stock = stock;
-    this.imagen = imagen;
-  }
-}
-
-//Array donde se van a acumular los productos que cargue el cliente
-let productos = [];
-
-//Boton que me permite mostrar los productos cargados en forma dinamica desde js
-let botonProductos = document.getElementById("botonProductos");
-
-//Donde el usuario de mi aplicacion va a ver los productos que cargo con el formulario
-let divProductos = document.getElementById("divProductos");
-
-//Formulario donde el cliente que ocupa mi aplicacion va a cargar las caracteristicas de los productos
-let formProductos = document.getElementById("formProductos");
-
-//Para que aparezca un  mensaje pidiendo al usuario que no presione el boton nuevamente
-//porque los productos ya estan cargados
-let mensajeAmigable = document.getElementById("mensajeAmigable");
-
-formProductos.addEventListener('submit', (e) => {
-  e.preventDefault();
-  let datForm = new FormData(e.target);
-  let nuevoProd = new producto(datForm.get("nombre"), datForm.get("descripcion"), datForm.get("precio"), datForm.get("stock"), datForm.get("imagen"));
-  productos.push(nuevoProd);
-  localStorage.setItem('keyProductos', JSON.stringify(productos));
-  formProductos.reset()
-})
-
-botonProductos.addEventListener('click', () => {
-  let productosEnStorage = JSON.parse(localStorage.getItem('keyProductos'));
-  if (divProductos.children.length == 0) {
-    productosEnStorage.forEach((productosEnArray, indice) => {
-      divProductos.innerHTML += `<div class="card"; id= "producto ${indice}"; style="width: 18rem; margin: 3rem;">
-      <div class="card-body">
-        <h5 class="card-title">${productosEnArray.nombre}</h5>
-        <p class="card-text">Precio: $${productosEnArray.precio}</p>
-        <p class="card-text">Descripcion: ${productosEnArray.descripcion}</p>
-        <p class="card-text">Pedido Especial del cliente</p>
-        <p class="card-text">Stock: ${productosEnArray.stock}</p>
-        <a id= "boton${indice}" href="#" class="btn btn-primary">Agregar</a>
-      </div>
+function renderizarCaja() {
+  const contenedorCaja = document.getElementById("contenedorCaja");
+  contenedorCaja.remove();
+  const table = document.getElementById("table");
+  const tbody = document.createElement("tbody");
+  tbody.id = "contenedorCaja";
+  table.appendChild(tbody)
+  const contenedor = document.getElementById("contenedorCaja")
   
-  </div>`
+  caja.productos.forEach(producto => {
+    let tr = document.createElement("tr");
+    let id = 'caja-' + producto.id;
+    tr.innerHTML = `<th scope="row">${producto.id}</th>
+    <td>${producto.nombre}</td>
+    <td>${producto.precio}</td>
+    <td>${producto.cantidad}</td>
+    <td><button id="${id}">Eliminar</button></td>`
+    contenedor.appendChild(tr);
+
+    let botonEliminar = document.getElementById(id);
+    botonEliminar.addEventListener("click", (e)=>{
+      let id = e.target.id
+      //eliminamos caja- del id
+      id = Number(id.replace("caja-",''));
+      eliminarItem(id);
+      renderizarCaja();
+      guardarEnLocalStorage();
     })
-  } else {
-    mensajeAmigable.innerHTML = "Por favor no haga click en el boton porque los productos ya estan cargados"
-  }
+  });
+  
+  
+  const mostrarTotal = document.getElementById("mostrarTotal")
+  mostrarTotal.innerText = caja.total
+}
+
+//Asignar funciones a Eventos
+
+function asignarEventos() {
+  stockMenu.forEach(producto => {
+    let card = document.getElementById("item-"+producto.id)
+    card.addEventListener("click", () => { 
+    agregarALaCaja(producto)})
+  })
+}
+
+//ajax
+$.getJSON("../menu.json", function(data){
+  data.forEach(elemento => {
+    stockMenu.push(elemento)
+  })
+  recuperarDeLocalStorage()
+  renderizarCaja()
+  renderizarMenu()
+  asignarEventos()
   
 })
+
+function guardarEnLocalStorage() {
+  localStorage.setItem("caja", JSON.stringify(caja));
+}
+
+
+function recuperarDeLocalStorage() {
+  caja = JSON.parse(localStorage.getItem("caja"));
+}
+
