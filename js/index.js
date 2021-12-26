@@ -153,7 +153,7 @@ function asignarEventos() {
 }
 
 //ajax
-$.getJSON("menu.json", function(data){
+$.getJSON(window.location.href+"menu.json", function(data){
   data.forEach(elemento => {
     stockMenu.push(elemento)
   })
@@ -161,7 +161,6 @@ $.getJSON("menu.json", function(data){
   renderizarCaja()
   renderizarMenu()
   asignarEventos()
-  
 })
 
 function guardarEnLocalStorage() {
