@@ -153,7 +153,7 @@ function asignarEventos() {
 }
 
 //ajax
-$.getJSON(window.location.href+"menu.json", function(data){
+$.getJSON("menu.json", function(data){
   data.forEach(elemento => {
     stockMenu.push(elemento)
   })
