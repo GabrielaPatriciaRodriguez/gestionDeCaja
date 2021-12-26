@@ -22,8 +22,14 @@
 <body>
 
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid encabezado d-flex justify-content-center">
+    <nav class="nav navbar navbar-expand-lg navbar-light bg-light">
+      <div>
+        <ul>
+          <li><button id="botonDark" class="btn btn-dark"><i class="fas fa-moon"></i></button></li>
+          <li><button id="botonLight"class="btn btn-light"><i class="fas fa-sun"></i></button></li>
+        </ul>
+      </div>
+      <div class="container-fluid d-flex justify-content-center">
         <!-- Nombre del Comercio -->
         <a class="navbar-brand" href="#"><strong>La Morenita</strong></a>
         <h1>Gestion de Caja</h1>
@@ -119,6 +125,8 @@
   </script>
 
   <script src="./js/index.js"></script>
+
+  <script src="./js/darkMode.js"></script>
 </body>
 
 </html>

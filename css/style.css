@@ -10,7 +10,7 @@ box-sizing: border-box;
 }
 
 
-/* body {
+body {
   background-color: gainsboro;
   color: black;
   transition: background-color 800ms ease;
@@ -19,12 +19,7 @@ box-sizing: border-box;
 .darkMode {
   background-color: black;
   color: gainsboro;
-} */
-
-.encabezado {
-    background-color: rgb(233, 158, 108);
-    height: 8rem;
-}
+} 
 
 .nav ul {
 list-style: none;
