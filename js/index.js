@@ -6,39 +6,45 @@
 //que me retorna el primer elemento que coincida con el id que le paso
 
 function obtenerProducto(idProducto) {
-  let producto = stockMenu.find(producto => producto.id == idProducto)
-  return producto
+  let producto = stockMenu.find((producto) => producto.id == idProducto);
+  return producto;
 }
 
 //La Caja es un objeto que tendra propiedades: Total y un array de productos:
 
 let caja = {
   total: 0,
-  productos: []
-}
+  productos: [],
+};
 
 //Funcion para agregar a la caja productos:
 
 function agregarALaCaja(producto) {
   //Si existe en productos, suma 1 a la cantidad
   //Si no existe en productos lo agrega
-  let productoEnCaja = caja.productos.find(productoEnCaja => productoEnCaja.id == producto.id)
-  if(productoEnCaja) {
-    productoEnCaja.cantidad += 1
+  let productoEnCaja = caja.productos.find(
+    (productoEnCaja) => productoEnCaja.id == producto.id
+  );
+  if (productoEnCaja) {
+    productoEnCaja.cantidad += 1;
+  } else {
+    caja.productos.push({
+      ...producto,
+      cantidad: 1
+    });
   }
-  else{
-    caja.productos.push({...producto, cantidad: 1})
-  }
-  actualizarTotal()
-  renderizarCaja()
-  guardarEnLocalStorage()
+  actualizarTotal();
+  renderizarCaja();
+  guardarEnLocalStorage();
 }
 
 //Actualizar el total de la caja:
 
 function actualizarTotal() {
-  caja.total = 0
-  caja.productos.forEach(producto => caja.total += (producto.precio * producto.cantidad))
+  caja.total = 0;
+  caja.productos.forEach(
+    (producto) => (caja.total += producto.precio * producto.cantidad)
+  );
 }
 
 //Para dejar la caja en cero:
@@ -46,9 +52,11 @@ function actualizarTotal() {
 function resetearCaja() {
   caja = {
     total: 0,
-    productos: []
-  }
+    productos: [],
+  };
 }
+
+//Para cobrar y que al final de un alert con un mensaje
 
 let botonCobrar = document.getElementById("cobrar");
 
@@ -57,20 +65,19 @@ botonCobrar.addEventListener("click", () => {
   resetearCaja();
   guardarEnLocalStorage();
   renderizarCaja();
-})
+});
 
-  function eliminarItem(id) {
-    console.log("console id en eliminar item", id)
-    const index = caja.productos.findIndex(elemento => elemento.id === id);
-    console.log("console index", index)
-    if(caja.productos[index].cantidad > 1){
-      caja.productos[index].cantidad -= 1 
-      
-    }else{
-      caja.productos = caja.productos.filter(elemento => elemento.id !== id);
-    }
-    actualizarTotal()
+//Funcion eliminar un producto de la caja
+
+function eliminarItem(id) {
+  const index = caja.productos.findIndex((elemento) => elemento.id === id);
+  if (caja.productos[index].cantidad > 1) {
+    caja.productos[index].cantidad -= 1;
+  } else {
+    caja.productos = caja.productos.filter((elemento) => elemento.id !== id);
   }
+  actualizarTotal();
+}
 
 //CARGUE TODOS LOS PRODUCTOS en un archivo json (menu.json)
 // Luego muestro en la pagina, en el HTML, en forma de cards
@@ -81,8 +88,8 @@ let stockMenu = [];
 
 function crearCardProducto(menu) {
   let div = document.createElement("div");
-    div.classList.add("producto");
-    div.innerHTML += `<div class="card" style="width: 18rem; margin: 3rem;">
+  div.classList.add("producto");
+  div.innerHTML += `<div class="card" style="width: 18rem; margin: 3rem;">
         <img src=${menu.img} style="width: 18rem; height:200px;">
         <div class="card-body">
           <h5 class="card-title">${menu.nombre}</h5>
@@ -92,14 +99,14 @@ function crearCardProducto(menu) {
           <p class="card-text">stock: ${menu.stock}</p>
           <a id="item-${menu.id}" href="#" class="btn btn-primary">Agregar</a>
         </div>
-      </div>`
-      return div;
+      </div>`;
+  return div;
 }
 
 //Funcion para mostrar la carta (productos) en el html
 
 function renderizarMenu() {
-  stockMenu.forEach(menu => {
+  stockMenu.forEach((menu) => {
     const div = crearCardProducto(menu);
     contenedorMenu.appendChild(div);
   });
@@ -113,62 +120,60 @@ function renderizarCaja() {
   const table = document.getElementById("table");
   const tbody = document.createElement("tbody");
   tbody.id = "contenedorCaja";
-  table.appendChild(tbody)
-  const contenedor = document.getElementById("contenedorCaja")
-  
-  caja.productos.forEach(producto => {
+  table.appendChild(tbody);
+  const contenedor = document.getElementById("contenedorCaja");
+
+  caja.productos.forEach((producto) => {
     let tr = document.createElement("tr");
-    let id = 'caja-' + producto.id;
+    let id = "caja-" + producto.id;
     tr.innerHTML = `<th scope="row">${producto.id}</th>
     <td>${producto.nombre}</td>
     <td>${producto.precio}</td>
     <td>${producto.cantidad}</td>
-    <td><button id="${id}">Eliminar</button></td>`
+    <td><button id="${id}">Eliminar</button></td>`;
     contenedor.appendChild(tr);
 
     let botonEliminar = document.getElementById(id);
-    botonEliminar.addEventListener("click", (e)=>{
-      let id = e.target.id
+    botonEliminar.addEventListener("click", (e) => {
+      let id = e.target.id;
       //eliminamos caja- del id
-      id = Number(id.replace("caja-",''));
+      id = Number(id.replace("caja-", ""));
       eliminarItem(id);
       renderizarCaja();
       guardarEnLocalStorage();
-    })
+    });
   });
-  
-  
-  const mostrarTotal = document.getElementById("mostrarTotal")
-  mostrarTotal.innerText = caja.total
+
+  const mostrarTotal = document.getElementById("mostrarTotal");
+  mostrarTotal.innerText = caja.total;
 }
 
 //Asignar funciones a Eventos
 
 function asignarEventos() {
-  stockMenu.forEach(producto => {
-    let card = document.getElementById("item-"+producto.id)
-    card.addEventListener("click", () => { 
-    agregarALaCaja(producto)})
-  })
+  stockMenu.forEach((producto) => {
+    let card = document.getElementById("item-" + producto.id);
+    card.addEventListener("click", () => {
+      agregarALaCaja(producto);
+    });
+  });
 }
 
 //ajax
-$.getJSON("menu.json", function(data){
-  data.forEach(elemento => {
-    stockMenu.push(elemento)
-  })
-  recuperarDeLocalStorage()
-  renderizarCaja()
-  renderizarMenu()
-  asignarEventos()
-})
+$.getJSON("menu.json", function (data) {
+  data.forEach((elemento) => {
+    stockMenu.push(elemento);
+  });
+  recuperarDeLocalStorage();
+  renderizarCaja();
+  renderizarMenu();
+  asignarEventos();
+});
 
 function guardarEnLocalStorage() {
   localStorage.setItem("caja", JSON.stringify(caja));
 }
 
-
 function recuperarDeLocalStorage() {
   caja = JSON.parse(localStorage.getItem("caja"));
 }
-
