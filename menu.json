@@ -6,7 +6,7 @@
     "desc": "Pan, carne, queso",
     "precio": 250,
     "img": "./assets/hamburguesa.jpg",
-    "stock": 1
+    "stock": 2
   },
   {
     "id": 2,
@@ -33,7 +33,7 @@
     "desc": "Pizza, anchoas, muzzarella",
     "precio": 850,
     "img": "./assets/pizzaAnchoas.jpg",
-    "stock": 1
+    "stock": 5
   },
   {
     "id": 5,
@@ -42,7 +42,7 @@
     "desc": "Pizza, Morrones, Muzzarella",
     "precio": 900,
     "img": "./assets/pizzaMorrones.jpg",
-    "stock": 1
+    "stock": 9
   }, 
   {
     "id": 6,
@@ -51,7 +51,7 @@
     "desc": "frutilla, durazno, anana",
     "precio": 550,
     "img": "./assets/daikiri.jpg",
-    "stock": 1
+    "stock": 15
   },
   {
     "id": 7,
@@ -60,7 +60,7 @@
     "desc": "Tequila, limon, sal",
     "precio": 900,
     "img": "./assets/tequila.jpg",
-    "stock": 1
+    "stock": 20
   },
   {
     "id": 8,
@@ -69,7 +69,7 @@
     "desc": "Cerveza",
     "precio": 750,
     "img": "./assets/coronas.jpg",
-    "stock": 1
+    "stock": 0
   },
   {
     "id": 9,
@@ -78,6 +78,6 @@
     "desc": "Cerveza",
     "precio": 5000,
     "img": "./assets/coronas.jpg",
-    "stock": 1
+    "stock": 14
   }
 ]

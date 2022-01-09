@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <!-- Required meta tags -->
@@ -32,21 +32,23 @@
         </ul>
       </div>
       <div class="container-fluid d-flex justify-content-center">
-        <!-- Nombre del Comercio -->
+        <!-- Nombre del Comercio - En que consiste el programa -->
         <h1>La Morenita - Gestion de Caja</h1>
       </div>
     </nav>
   </header>
 
   <main>
-    <img src="./assets/principal.jpg" class="img-fluid imagen" alt="imagen principal">
+    <div class="container-fluid"> 
+      <img src="./assets/principal.jpg" class="img-fluid imagen" alt="imagen principal">
+    </div>
 
     <!-- Boton Caja -->
     <div class="botonCaja">
       <div>
         <button class="caja" type="button" data-bs-toggle="modal" data-bs-target="#modal1">
           <h2>CAJA</h2>
-          <img src="./assets/caja-registradora.png" alt="" width="70px" height="70px">
+          <img src="./assets/caja-registradora.png" alt="caja-registradora" width="70px" height="70px">
         </button>
         <div class="modal" tabindex="-1" id="modal1">
           <div class="modal-dialog">
@@ -76,8 +78,8 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="cobrar">Cobrar</button>
+                <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary rounded-pill" id="cobrar">Cobrar</button>
               </div>
             </div>
           </div>
@@ -97,7 +99,7 @@
     </div>
 
     <div id="contenedorMenu"></div>
-
+    
 
   </main>
 

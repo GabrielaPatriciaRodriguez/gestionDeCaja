@@ -6,8 +6,22 @@
 //que me retorna el primer elemento que coincida con el id que le paso
 
 function obtenerProducto(idProducto) {
-  let producto = stockMenu.find((producto) => producto.id == idProducto);
+  let producto = stockMenu.find(
+    (producto) => producto.id == idProducto && producto.stock > 0
+  );
   return producto;
+}
+
+//Necesito disminuir el stock y que cuando llegue a cero no lo agregue a la caja
+
+function disminuirStock(idProducto) {
+  stockMenu = stockMenu.map((producto) => {
+    if (producto.id == idProducto && producto.stock > 0) {
+      producto.stock = producto.stock - 1;
+      return producto;
+    }
+    return producto;
+  });
 }
 
 //La Caja es un objeto que tendra propiedades: Total y un array de productos:
@@ -17,25 +31,31 @@ let caja = {
   productos: [],
 };
 
-//Funcion para agregar a la caja productos:
+//Funcion para agregar productos a la caja:
 
 function agregarALaCaja(producto) {
   //Si existe en productos, suma 1 a la cantidad
   //Si no existe en productos lo agrega
-  let productoEnCaja = caja.productos.find(
-    (productoEnCaja) => productoEnCaja.id == producto.id
-  );
-  if (productoEnCaja) {
-    productoEnCaja.cantidad += 1;
+  const result = obtenerProducto(producto.id);
+  if (result) {
+    let productoEnCaja = caja.productos.find(
+      (productoEnCaja) => productoEnCaja.id == producto.id
+    );
+    if (productoEnCaja) {
+      productoEnCaja.cantidad += 1;
+    } else {
+      caja.productos.push({
+        ...producto,
+        cantidad: 1,
+      });
+    }
+    actualizarTotal();
+    renderizarCaja();
+    guardarEnLocalStorage();
+    disminuirStock(producto.id);
   } else {
-    caja.productos.push({
-      ...producto,
-      cantidad: 1
-    });
+    console.log("No hay stock");
   }
-  actualizarTotal();
-  renderizarCaja();
-  guardarEnLocalStorage();
 }
 
 //Actualizar el total de la caja:
@@ -88,18 +108,20 @@ let stockMenu = [];
 
 function crearCardProducto(menu) {
   let div = document.createElement("div");
-  div.classList.add("producto");
-  div.innerHTML += `<div class="card" style="width: 18rem; margin: 3rem;">
-        <img src=${menu.img} style="width: 18rem; height:200px;">
-        <div class="card-body">
-          <h5 class="card-title">${menu.nombre}</h5>
-          <p class="card-text">Precio: $${menu.precio}</p>
-          <p class="card-text">Descripcion: ${menu.desc}</p>
-          <p class="card-text">Pedido Especial del cliente</p>
-          <p class="card-text">stock: ${menu.stock}</p>
-          <a id="item-${menu.id}" href="#" class="btn btn-primary">Agregar</a>
-        </div>
-      </div>`;
+  // div.classList.add("producto");
+  div.innerHTML += `<div class="card" 
+                      style="padding: 5px; margin-bottom: 10px; width: 18rem; 
+                      box-shadow: 2px 6px 3px 3px rgba(0, 0, 0, 0.3); 
+                      margin: 3rem;">
+                        <img src=${menu.img} style="card-img-top width: 17rem; height:200px; border-radius: 5px;">
+                      <div class="card-body">
+                        <h5 class="card-title">${menu.nombre}</h5>
+                        <p class="card-text">Precio: $${menu.precio}</p>
+                        <p class="card-text">Descripcion: ${menu.desc}</p>
+                        <p class="card-text">stock: ${menu.stock}</p>
+                        <a id="item-${menu.id}" href="#" class="btn btn-success rounded-pill">Agregar</a>
+                      </div>
+                    </div>`;
   return div;
 }
 
@@ -128,9 +150,9 @@ function renderizarCaja() {
     let id = "caja-" + producto.id;
     tr.innerHTML = `<th scope="row">${producto.id}</th>
     <td>${producto.nombre}</td>
-    <td>${producto.precio}</td>
+    <td>$ ${producto.precio}</td>
     <td>${producto.cantidad}</td>
-    <td><button id="${id}">Eliminar</button></td>`;
+    <td><button class="btn btn-danger rounded-pill" id="${id}"><i class="fas fa-trash-restore"></i></button></td>`;
     contenedor.appendChild(tr);
 
     let botonEliminar = document.getElementById(id);
@@ -175,5 +197,7 @@ function guardarEnLocalStorage() {
 }
 
 function recuperarDeLocalStorage() {
-  caja = JSON.parse(localStorage.getItem("caja"));
+  if (localStorage.caja) {
+    caja = JSON.parse(localStorage.getItem("caja"));
+  }
 }
