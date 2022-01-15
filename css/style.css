@@ -43,20 +43,10 @@ body {
 
 /* Estilos para el contenedor menu */
 #contenedorMenu {
-  max-width: 1200px;
-  margin: 50px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 }
-
-/* Estilos dado a los productos */
-/* .producto {
-  max-width: 33%;
-  padding: 5px;
-  margin-bottom: 10px;
-  box-shadow: 2px 6px 3px 3px rgba(0, 0, 0, 0.3);
-} */
 
 /* Boton Caja*/
 .botonCaja {
@@ -76,14 +66,22 @@ body {
   height: auto;
   padding: 4rem;
   color: black;
+  width: auto;
 }
 
 .iconos {
   list-style: none;
   display: flex;
+  justify-content: center;
 }
 
 .iconosRedes {
   color: rgb(12, 9, 7);
   width: 5rem;
+}
+
+.copyright{
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
 }
